@@ -1,0 +1,36 @@
+<div class="row mt-5">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <img src="https://assets.nationbuilder.com/themes/6209a58e4764e819c8d303f8/attachments/original/1644877550/login.png?1644877550" class="img-fluid" style="width: 50%; height: auto;" />
+                    <h5>Acesso ao Sistema</h5>
+                </div>
+                <hr />
+                <form>
+                    <div class="mb-3">
+                        <label>Email de acesso:</label>
+                        <input type="text" class="form-control" placeholder="Digite seu email aqui" />
+                    </div>
+                    <div class="mb-3">
+                        <label>Senha de acesso:</label>
+                        <input type="password" class="form-control" placeholder="Digite sua senha aqui" />
+                    </div>
+                    <div class="mb-1">
+                        <div class="d-grid">
+                            <input type="submit" value="Acessar Sistema" class="btn btn-primary" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-grid">
+                            <button class="btn btn-light" [routerLink]="['/user-register']">
+                                Não possui conta?
+                                <strong>Cadastre-se aqui!</strong>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
