@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-user-register',
@@ -62,7 +63,7 @@ export class UserRegisterComponent implements OnInit {
 
     //requisição para a API..
     this.httpClient.post( //METHOD POST
-      'http://localhost:38263/api/Register', //ENDPOINT
+      environment.apiUrl + '/register', //ENDPOINT
       this.formRegister.value //REQUEST DATA
     )
       .subscribe( //RESPOSTA (promisse)

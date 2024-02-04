@@ -3,24 +3,60 @@
         <div class="card">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="https://assets.nationbuilder.com/themes/6209a58e4764e819c8d303f8/attachments/original/1644877550/login.png?1644877550" class="img-fluid" style="width: 50%; height: auto;" />
+                    <img src="https://assets.nationbuilder.com/themes/6209a58e4764e819c8d303f8/attachments/original/1644877550/login.png?1644877550"
+                        class="img-fluid" style="width: 50%; height: auto;" />
                     <h5>Acesso ao Sistema</h5>
                 </div>
                 <hr />
-                <form>
+
+                <div *ngIf="mensagem_sucesso" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                    <strong>Sucesso!</strong> {{mensagem_sucesso}}
+                    <button type="button" class="btn-close" aria-label="close" (click)="limparMensagens()"></button>
+                </div>
+
+                <div *ngIf="mensagem_erro" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                    <strong>Erro!</strong> {{mensagem_erro}}
+                    <button type="button" class="btn-close" aria-label="close" (click)="limparMensagens()"></button>
+                </div>
+
+                <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+
                     <div class="mb-3">
                         <label>Email de acesso:</label>
-                        <input type="text" class="form-control" placeholder="Digite seu email aqui" />
+                        <input type="text" class="form-control" formControlName="email"
+                            placeholder="Digite seu email aqui" />
+
+                        <div class="text-danger" *ngIf="form.email.touched && form.email.invalid">
+                            <div *ngIf="form.email.errors.required">
+                                Por favor, informe seu email.
+                            </div>
+                            <div *ngIf="form.email.errors.email">
+                                Por favor, informe um email válido.
+                            </div>
+                        </div>
+
                     </div>
+
                     <div class="mb-3">
                         <label>Senha de acesso:</label>
-                        <input type="password" class="form-control" placeholder="Digite sua senha aqui" />
+                        <input type="password" class="form-control" formControlName="senha"
+                            placeholder="Digite sua senha aqui" />
+
+                        <div class="text-danger" *ngIf="form.senha.touched && form.senha.invalid">
+                            <div *ngIf="form.senha.errors.required">
+                                Por favor, informe sua senha.
+                            </div>
+                        </div>
+
                     </div>
+
                     <div class="mb-1">
                         <div class="d-grid">
-                            <input type="submit" value="Acessar Sistema" class="btn btn-primary" />
+                            <input type="submit" value="Acessar Sistema" [disabled]="!formLogin.valid"
+                                class="btn btn-primary" />
                         </div>
                     </div>
+
                     <div class="mb-3">
                         <div class="d-grid">
                             <button class="btn btn-light" [routerLink]="['/user-register']">
